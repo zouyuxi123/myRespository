@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta content="application/xhtml+xml;charset=UTF-8"
+	http-equiv="Content-Type">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>我的速运-登陆</title>
+
+<link rel="stylesheet" type="text/css" href="css/styleloginsign.css">
+<link rel="stylesheet" type="text/css"
+	href="css/bootstrap/bootstrap.min.css">
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/self/effect.js"></script>
+<script type="text/javascript" src="js/form.js"></script>
+
+<!--[if IE]>
+    <script  type="text/javascript" src="js/html5.js"></script>
+    <script  type="text/javascript" src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body style="background-color: #f2f2f2;">
+	<div class="logincontent">
+		<div class="loginnav">
+			<nav class="nav navbar-default">
+				<div class="container">
+					<div class="navbar-header">
+						<a class="navbar-brand" href="#"><img
+							src="images/icon/logo.png"></a> <span class="logintitle">用户登录</span>
+					</div>
+
+				</div>
+
+			</nav>
+		</div>
+
+		<section class="mainlogin">
+			<div class="container">
+				<div class="col-md-4 col-md-offset-7 loginbox">
+					<h4>用户登录</h4>
+					<form class="form-horizontal" id="userForm" action="Login"
+						method="post">
+
+						<div class="form-group">
+							<label class="col-sm-3 control-label">登录方式</label>
+							<div class="col-sm-7">
+								<label for="r1" class="radio-inline"><input type="radio"
+									value="0" name="article" onclick="show()" checked />密码登录</label> <label
+									for="r2" class="radio-inline"><input type="radio"
+									value="1" name="article" onclick="show()" />手机号登录</label>
+
+							</div>
+						</div>
+
+
+						<div id="format1">
+							<div class="form-group">
+								<label for="inputaccount" class="col-sm-3 control-label">账号</label>
+								<div class="col-sm-8">
+									<input type="text" name="telephone" class="form-control"
+										id="telephone" placeholder="请输入账号">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputpassword" class="col-sm-3 control-label">密码</label>
+								<div class="col-sm-8">
+									<input type="password" class="form-control" name="password"
+										id="password" placeholder="请输入您的密码">
+								</div>
+							</div>
+							<div class="form-group" style="margin-bottom: 0;">
+								<label for="inputvalidate" class="col-sm-3 control-label">验证码</label>
+								<div class="col-sm-5">
+									<input type="password" class="form-control" id="inputaccount"
+										placeholder="请输入验证码">
+								</div>
+								<div class="col-sm-3">
+									<img src="images/icon/yanz.png">
+								</div>
+							</div>
+							<div class="form-group">
+
+								<div class="col-sm-offset-4 col-sm-4">
+									<div class="checkbox">
+										<input type="checkbox"><span class="size12">
+											记住用户名</span>
+
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+
+
+						<div id="format2" style="display: none;">
+							<div class="form-group">
+								<label for="inputPassword3" class="col-sm-3 control-label">手机号</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="inputaccount"
+										placeholder="请输入手机号/邮箱/用户名">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="inputvalidate" class="col-sm-3 control-label">验证码</label>
+								<div class="col-sm-4">
+									<input type="password" class="form-control" id="inputaccount"
+										placeholder="验证码">
+								</div>
+								<div class="col-sm-3">
+									<button class="btn btn-default">获取验证码</button>
+								</div>
+							</div>
+
+						</div>
+
+
+
+
+						<div class="col-md-offset-3 col-md-8">
+							<a href="" class="btn btn-danger" id="loginBtn">登录</a>
+
+						</div>
+						<p class="text-right clearfix">
+							还不是我们的会员？<b><a href="signup.html">立即注册</a></b>
+						</p>
+
+					</form>
+
+				</div>
+			</div>
+
+		</section>
+
+		<footer>
+			<section class="copyright size12">
+				<div class="container">
+					<p class="text-center">地址：北京市昌平区建材城西路金燕龙办公楼一层 邮编：100096
+						电话：400-618-4000 传真：010-82935100</p>
+					<p class="text-center">京ICP备08001421号京公网安备110108007702</p>
+				</div>
+			</section>
+		</footer>
+	</div>
+	<script type="text/javascript">
+		$(function() {
+			$("#loginBtn").click(function() {
+				var password = $("#password").val();
+				var telephone = $("#telephone").val();
+				$.post("login/Login", {
+					password : password,
+					telephone : telephone
+				}, function(data) {
+					if (data.success) {
+						window.location = "myhome.html";
+					} else {
+						alert("登陆失败" + msg)
+					}
+				}, "json")
+
+			})
+
+		})
+	</script>
+</body>
+
+</html>
